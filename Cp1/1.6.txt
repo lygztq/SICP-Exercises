@@ -1,0 +1,6 @@
+The function will be stuck in an infinite loop.
+Use applicative-order evaluation means arguments will be evaluated first, and to evaluate
+
+(sqrt-iter (improve guess x) x)
+
+means we start another iteration.
