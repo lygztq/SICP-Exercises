@@ -1,0 +1,22 @@
+(define (triple_add a b c) (+ (+ a b) c))
+
+(define (recursive_p n)
+  (cond ((< n 3) n)
+        (else (triple_add (recursive_p (- n 1))
+                          (recursive_p (- n 2))
+                          (recursive_p (- n 3))
+              )
+        )
+  )
+)
+
+(define (iterative_p n)
+  (define (iterative_iter a b c cnt)
+    (if (= 0 cnt) c (iterative_iter (triple_add a b c) a b (- cnt 1))))
+  (iterative_iter 2 1 0 n)
+)
+
+(display (iterative_p 10))
+(newline)
+(display (recursive_p 10))
+(exit)
