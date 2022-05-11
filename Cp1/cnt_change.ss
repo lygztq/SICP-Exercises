@@ -1,0 +1,22 @@
+(define (head_coin_val n)
+  (cond ((= n 5) 50)
+        ((= n 4) 25)
+        ((= n 3) 10)
+        ((= n 2)  5)
+        ((= n 1)  1))
+)
+
+(define (cc remain n)
+  (cond ((= remain 0) 1)
+        ((or (< remain 0) (= n 0)) 0)
+        (else (+ (cc remain (- n 1))
+                 (cc (- remain (head_coin_val n)) n)
+              )
+        )
+  )
+)
+
+(define (cnt_charge n) (cc n 5))
+
+(display (cnt_charge 100))
+(exit)
