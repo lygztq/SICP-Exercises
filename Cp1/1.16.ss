@@ -1,0 +1,17 @@
+(define (is_even n) (= (remainder n 2) 0))
+(define (square n) (* n n))
+
+(define (fast_exp b n)
+  (define (exp_iter elem cnt prod)
+    (cond ((= cnt 1) (* prod elem))
+          ((is_even cnt) (exp_iter (square elem) (/ cnt 2) prod))
+          (else (exp_iter elem (- cnt 1) (* prod elem)))
+    )
+  )
+  (if (= n 0) 1 (exp_iter b n 1))
+)
+
+(display (fast_exp 2 11))
+(newline)
+(display (fast_exp 2 10))
+(exit)
