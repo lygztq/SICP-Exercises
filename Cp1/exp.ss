@@ -14,7 +14,7 @@
 (define (fast_exp b n)
   (cond ((= n 0) 1)
         ((is_even n) (square (fast_exp b (/ n 2))))
-        (else (* b (fast_exp b (- n 1))))      
+        (else (* b (fast_exp b (- n 1))))
   )
 )
 
