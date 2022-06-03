@@ -1,0 +1,20 @@
+(define tolerance 1e-5)
+(define (abs x) (if (< x 0) (- x) x))
+(define (close-enough v1 v2) (< (abs (- v1 v2)) tolerance))
+(define (display-and-return a x)
+  (display a)
+  x
+)
+(define (fix-point f init cnt)
+  (let ((next (f init)))
+    (if (close-enough next init) (display-and-return cnt next) (fix-point f next (+ cnt 1)))
+  )
+)
+
+(define (avg a b) (/ (+ a b) 2))
+(define (avg-damping f) (lambda (x) (avg x (f x))))
+
+(fix-point (lambda (x) (/ (log 1000) (log x))) 2.0 0)
+(newline)
+(fix-point (avg-damping (lambda (x) (/ (log 1000) (log x)))) 2.0 0)
+(exit)
