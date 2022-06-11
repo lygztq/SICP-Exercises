@@ -1,0 +1,26 @@
+(define (make_interval a b) (cons a b))
+(define (upper_bound x) (car x))
+(define (lower_bound x) (cdr x))
+(define (display_interval name x)
+  (display name)
+  (display ": (")
+  (display (lower_bound x))
+  (display ", ")
+  (display (upper_bound x))
+  (display ")")
+  (newline)
+)
+(define (sub_interval x y)
+  (make_interval
+    (- (lower_bound x) (upper_bound y))
+    (- (upper_bound x) (lower_bound y))
+  )
+)
+
+(display_interval "test"
+  (sub_interval
+    (make_interval 3 4)
+    (make_interval 4 4)
+  )
+)
+(exit)

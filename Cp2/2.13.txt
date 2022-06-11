@@ -1,0 +1,19 @@
+a = (c1, err1)
+b = (c2, err2)
+
+a_min = c1(1 - err1/100)
+a_max = c1(1 + err1/100)
+b_min = c2(1 - err2/100)
+b_max = c2(1 + err2/100)
+
+ab_min = c1c2(1 - err1/100)(1 - err2/100)
+       = c1c2(1 - (err1+err2)/100 + (err1*err2)/10000)
+ab_max = c1c2(1 + err1/100)(1 + err2/100)
+       = c1c2(1 + (err1+err2)/100 + (err1*err2)/10000)
+
+new_center = c1c2 + c1c2(err1*err2)/10000
+width = c1c2(err1 + err2)/100
+
+new_err = 100 * (c1c2(err1 + err2) / 100) / (c1c2 + c1c2(err1*err2)/10000)
+        = (err1 + err2) / (1 + err1*err2*0.0001)
+        \approx (err1 + err2)
